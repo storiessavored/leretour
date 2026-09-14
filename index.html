@@ -9,7 +9,7 @@
 <title>Возвращение · Le retour</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@1,300;1,400&family=Manrope:wght@200;300;400;500;600&display=swap">
 <style>
 :root{
   --linen:#F2EDE5;
@@ -153,19 +153,13 @@ figure{margin:0}
 .f-mark{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
 .f-mail{font-size:14.5px}
 .f-mail a{border-bottom-color:var(--rule)}
-.venue-pair{display:grid;grid-template-columns:1.55fr 1fr;gap:12px;align-items:stretch}
-.venue-pair figure{margin:0;min-width:0;min-height:0;overflow:hidden}
-/* высоту ряда задаёт широкое фото; вертикальное кадрируется под неё */
-.venue-pair .wide{aspect-ratio:1024/683}
-.venue-pair .wide img{width:100%;height:100%;object-fit:cover}
-.venue-pair .tall{position:relative}
-.venue-pair .tall img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:50% 46%}
-@media (max-width:640px){
-  .venue-pair{grid-template-columns:1fr}
-  .venue-pair .wide{display:none}
-  .venue-pair .tall{aspect-ratio:3/4}
+/* исходник вертикальный и небольшой — не растягиваем его шире родного размера */
+.venue-one{
+  position:relative;overflow:hidden;
+  max-width:432px;margin-inline:auto;aspect-ratio:3/4;
 }
+.venue-one img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 46%}
 figure img{width:100%;height:auto}
 figcaption{
   font-size:12px;letter-spacing:.08em;text-transform:uppercase;
@@ -176,10 +170,8 @@ figcaption{
 .quote-sec{
   background:var(--paper);
   padding:clamp(48px,7vw,80px) clamp(24px,4vw,56px);
-  margin-block:clamp(34px,5vw,78px) 0;
-  border-top:none!important;
+  margin-block:clamp(38px,5.5vw,72px) clamp(38px,5.5vw,72px);
 }
-.quote-sec + section{border-top:none}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
@@ -195,30 +187,36 @@ figcaption{
   letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
 }
 
-/* ---------- five parts ---------- */
-.parts{margin:44px 0 0;padding:0;list-style:none;display:grid;gap:0}
-.part{
-  display:grid;grid-template-columns:88px 1fr;gap:4px 28px;
-  padding-block:24px;border-top:1px solid var(--rule);
-}
-.part:first-child{border-top:none;padding-top:0}
-.age{
-  font-family:var(--sans);font-size:30px;line-height:1;color:var(--wine);
-  font-variant-numeric:tabular-nums;padding-top:4px;
-}
-.age span{display:block;font-family:var(--sans);font-size:10px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px}
-.part p{
-  margin:0;max-width:40em;
-  font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.6;
+/* ---------- о вечере ---------- */
+.poem-sec{border-top:none;padding-block:clamp(44px,6.5vw,86px) clamp(10px,1.5vw,20px)}
+.poem{
+  margin:0;text-align:center;
+  font-family:"Cormorant Infant",Georgia,serif;font-style:italic;font-weight:300;
+  font-size:clamp(26px,4.6vw,48px);line-height:1.5;color:var(--ink);
 }
 
-.part .dish{
-  margin:14px 0 0;max-width:none;
-  font-size:12.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  line-height:1.9;color:var(--olive);
+/* ---------- меню ---------- */
+.menu{
+  list-style:none;counter-reset:course;
+  margin:0;padding:0;border-top:1px solid var(--rule);
 }
-.dish-label{color:var(--ink-soft)}
+.menu li{
+  counter-increment:course;
+  display:grid;grid-template-columns:44px 1fr;gap:20px;
+  padding-block:18px;border-bottom:1px solid var(--rule);
+  font-weight:300;font-size:16.5px;line-height:1.55;max-width:none;
+}
+.menu li::before{
+  content:counter(course);
+  font-size:15px;color:var(--wine);font-variant-numeric:tabular-nums;
+}
+.menu-note{margin-top:22px;font-size:14.5px;color:var(--ink-soft)}
+#menu,#location{border-top:none}
+/* меню прижимаем к соседним блокам */
+#about-evening{padding-bottom:clamp(26px,3.5vw,44px)}
+#menu{padding-block:clamp(22px,3vw,34px)}
+#location{padding-top:clamp(34px,4.5vw,56px)}
+
 .gallery{
   display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px;
 }
@@ -316,13 +314,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
     </div>
   </section>
 
-  <section class="quote-sec reveal">
-    <blockquote class="quote">
-      За этим столом ничего не обязательно.<br>
-      Можно сделать то, что вы услышите.<br>
-      Можно сделать по-своему.<br>
-      Можно <em>просто смотреть</em>.
-      <span class="voice-src">часть выручки вечера отправляется на благотворительность</span>
+  <section class="poem-sec">
+    <blockquote class="poem">
+      Мне шесть лет.<br>
+      Я бегу по двору.<br>
+      Очень быстро.<br>
+      Так быстро, как могу.<br>
+      Прыгаю через лужу.<br>
+      Не допрыгиваю.<br>
+      Падаю.<br>
+      На коленке царапина.<br>
+      На ладонях земля.<br>
+      Я встаю.<br>
+      И снова бегу.
     </blockquote>
   </section>
 
@@ -337,31 +341,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
 
   <section id="about-evening">
     <p class="eyebrow">О вечере</p>
-    <h2>Пять состояний, пять подач, один общий стол</h2>
-    <p class="serif" style="font-size:18px;line-height:1.6">За столом становится возможным то, на что обычно нет времени: заметить собственное тело, узнать себя в шесть, в тринадцать, в двадцать пять — и остаться с этим, пока рядом едят, негромко общаются или молчат.</p>
+    <p class="serif" style="font-size:18px;line-height:1.6">«Возвращение» — интерактивный ужин о теле, времени и состояниях, к которым мы возвращаемся на протяжении жизни.</p>
+    <p>История проходит через пять возрастных точек: детство, юношество, взросление, зрелость и возвращение. Они складываются не в линейную биографию, а скорее во фрагменты памяти. Некоторые слова, ощущения и действия возвращаются снова, но каждый раз проживаются немного иначе и приобретают новое значение.</p>
+    <p>Пять подач становятся пятью главами этой истории. Здесь нет отдельной сцены и зрительного зала: всё происходит за одним общим столом. Голос, еда, вода, зеркало, прикосновения, паузы и люди рядом постепенно становятся частью общего опыта.</p>
 
-    <ul class="parts">
-      <li class="part">
-        <div class="age">6<span>Тело</span></div>
-        <div><p>Я бегу по двору. Падаю. Встаю и снова бегу. Я ещё не знаю, что на меня кто-то смотрит.</p><p class="dish"><span class="dish-label">Подача:</span> Хлеб · взбитое масло · соль · сыр · яйцо · томат<br>Молодая морковь · редис · огурец · чёрная смородина</p></div>
-      </li>
-      <li class="part">
-        <div class="age">13<span>Зеркало</span></div>
-        <div><p>Я пришла просто помыть руки. Но остаюсь. Ещё недавно зеркало было просто предметом — теперь в нём появилась я.</p><p class="dish"><span class="dish-label">Подача:</span> Провансальский рататуй</p></div>
-      </li>
-      <li class="part">
-        <div class="age">17<span>Ритм</span></div>
-        <div><p>Вчера я могла пройти через весь город. Сегодня не хочу никуда. Я начинаю замечать: что-то всё время возвращается.</p><p class="dish"><span class="dish-label">Подача:</span> Целая рыба · фенхель · лимон · молодой картофель · зелень</p></div>
-      </li>
-      <li class="part">
-        <div class="age">25<span>Желание</span></div>
-        <div><p>Я замечаю человека, на которого хочется смотреть чуть дольше. И впервые думаю не о том, как выгляжу. Я думаю: чего я хочу?</p><p class="dish"><span class="dish-label">Подача:</span> Инжир · слива · жидкая халва · игристое</p></div>
-      </li>
-      <li class="part">
-        <div class="age">35<span>Возвращение</span></div>
-        <div><p>Я смотрю на тело, которое столько раз пыталась запомнить в одном состоянии. Но оно там не осталось. И я тоже.</p><p class="dish"><span class="dish-label">Подача:</span> Хлеб · масло · соль · томат · сыр · игристое · паштет · тарт с карамелизованным луком шалот</p></div>
-      </li>
-    </ul>
+    <div class="quote-sec reveal">
+      <blockquote class="quote">
+        За этим столом ничего не обязательно.<br>
+        Можно сделать то, что вы услышите.<br>
+        Можно сделать по-своему.<br>
+        Можно <em>просто смотреть</em>.
+        <span class="voice-src">часть выручки вечера отправляется на благотворительность</span>
+      </blockquote>
+    </div>
 
     <div class="gallery">
       <img src="p2.jpg" alt="Две пары рук, сомкнутых в светлой комнате" loading="lazy">
@@ -370,28 +362,26 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
     </div>
   </section>
 
+  <section id="menu">
+    <p class="eyebrow">Меню вечера</p>
+    <h2>От нашего шефа</h2>
+    <ol class="menu">
+      <li>Хлеб · взбитое масло · соль · сыр · яйцо · томат · молодая морковь · редис · огурец · чёрная смородина</li>
+      <li>Провансальский рататуй</li>
+      <li>Целая белая рыба · фенхель · лимон · молодой картофель · зелень</li>
+      <li>Инжир · слива · жидкая халва · игристое</li>
+      <li>Хлеб · масло · соль · томат · сыр · паштет · тарт с карамелизированным луком шалот</li>
+    </ol>
+    <p class="menu-note">В течение всего вечера к блюдам будет подаваться специально подобранное вино.</p>
+  </section>
+
   <section id="location">
     <p class="eyebrow">Локация</p>
-    <div class="cols">
-      <div>
-        <h2>Дом на воде<br>в 7-м округе Марселя</h2>
-        <p>Дом на самой воде с террасой и садом, в нескольких шагах от бухты Фос-Монне. Точные детали входа и парковки пришлём вместе с подтверждением брони.</p>
-      </div>
-      <div class="addr">
-        <span class="name">L’Oasis</span>
-        Rue des Braves<br>
-        13007 Marseille, France<br><br>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Rue%20des%20Braves%2C%2013007%20Marseille%2C%20France" target="_blank" rel="noopener">Посмотреть адрес →</a>
-      </div>
-    </div>
-    <div class="venue venue-pair">
-      <figure class="wide">
-        <img src="venue.jpg" alt="Двор дома L’Oasis: терраса под глицинией, деревянный настил, ставни" loading="lazy">
-      </figure>
-      <figure class="tall">
-        <img src="venue2.jpg" alt="Вид от дома на бухту Фос-Монне" loading="lazy">
-      </figure>
-    </div>
+    <h2>Дом на воде<br>в 7-м округе Марселя</h2>
+    <p>7-й округ Марселя, в нескольких шагах от бухты Фос-Монне. Дом на самой воде, с террасой и садом. Точные детали входа и парковки пришлём вместе с подтверждением брони.</p>
+    <figure class="venue venue-one">
+      <img src="venue2.jpg" alt="Вид от дома на бухту Фос-Монне" loading="lazy">
+    </figure>
   </section>
 
   <section id="booking">
@@ -406,7 +396,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
         </dl>
       </div>
       <div>
-        <p>Место считается забронированным после оплаты невозвратной брони 100 € за человека. Остальные 250 € — в день ужина. Ужин проходит на русском языке.</p>
+        <p>В стоимость входят пять подач, вино и участие в перформативной программе. Длительность ужина — 1,5 часа, проходит на русском языке.</p>
+        <p>Место считается забронированным после оплаты невозвратной брони 100 € за человека. Остальные 250 € — в день ужина.</p>
         <p>Часть выручки мы отправляем в поддержку женщин, заключённых по политическим делам.</p>
       </div>
     </div>
@@ -477,7 +468,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
   <section id="about">
     <p class="eyebrow">О нас</p>
     <h2>Stories.Savored</h2>
-    <p class="serif" style="font-size:18px;line-height:1.6">Серия перформативных благотворительных ужинов. Каждая редакция — своя тема, свой сценарий и своё меню: несколько подач, голос с личными историями и мягкая интеракция с гостями.</p>
+    <p class="serif" style="font-size:18px;line-height:1.6">Серия перформативных благотворительных ужинов. Каждое событие — своя тема, свой сценарий и своё меню: несколько подач, голос с личными историями и мягкое взаимодействие с гостями.</p>
     <p>Часть выручки каждого вечера идёт на поддержку женщин, заключённых по политическим делам.</p>
     <p class="eyebrow" style="margin:38px 0 0">Авторки ужина «Возвращение»</p>
     <ul class="team">
