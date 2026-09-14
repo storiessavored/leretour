@@ -163,8 +163,8 @@ figure{margin:0}
   object-fit:cover;object-position:50% 46%}
 @media (max-width:640px){
   .venue-pair{grid-template-columns:1fr}
-  .venue-pair .wide{aspect-ratio:auto}
-  .venue-pair .tall{aspect-ratio:4/3}
+  .venue-pair .wide{display:none}
+  .venue-pair .tall{aspect-ratio:3/4}
 }
 figure img{width:100%;height:auto}
 figcaption{
@@ -236,6 +236,8 @@ figcaption{
 .price dt{color:var(--ink-soft)}
 .price dd{margin:0;font-variant-numeric:tabular-nums}
 .price .total{font-family:var(--sans);font-size:26px;line-height:1.2}
+.price .total i{font-style:normal;font-size:13.5px;color:var(--ink-soft);
+  white-space:nowrap;margin-left:7px;vertical-align:.34em}
 
 /* ---------- form ---------- */
 form{margin-top:30px;max-width:var(--text)}
@@ -279,9 +281,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
 
 /* ---------- about ---------- */
 .team{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:18px}
-.team li{display:grid;grid-template-columns:180px 1fr;gap:18px;font-size:15.5px;align-items:baseline}
+.team li{display:grid;grid-template-columns:215px 1fr;gap:18px;font-size:15.5px;align-items:baseline}
 .team b{font-weight:400;font-family:var(--sans);font-size:18px}
 .team span{color:var(--ink-soft)}
+.team a{color:inherit;border-bottom-color:var(--rule)}
+.team a:hover{color:var(--wine);border-bottom-color:var(--wine)}
 
 @media (max-width:640px){
   .cols,.grid2,.dates{grid-template-columns:1fr}
@@ -355,7 +359,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
       </li>
       <li class="part">
         <div class="age">35<span>Возвращение</span></div>
-        <div><p>Я смотрю на тело, которое столько раз пыталась запомнить в одном состоянии. Но оно там не осталось. И я тоже.</p><p class="dish"><span class="dish-label">Подача:</span> Хлеб · масло · соль · томат · сыр · игристое · паштет</p></div>
+        <div><p>Я смотрю на тело, которое столько раз пыталась запомнить в одном состоянии. Но оно там не осталось. И я тоже.</p><p class="dish"><span class="dish-label">Подача:</span> Хлеб · масло · соль · томат · сыр · игристое · паштет · тарт с карамелизованным луком шалот</p></div>
       </li>
     </ul>
 
@@ -396,13 +400,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
     <div class="cols" style="align-items:start">
       <div>
         <dl class="price">
-          <dt>Участие</dt><dd class="total">350 €</dd>
-          <dt>Бронь онлайн</dt><dd>100 €</dd>
+          <dt>Участие</dt><dd class="total">350 €<i>с человека</i></dd>
+          <dt>Невозвратная бронь</dt><dd>100 €</dd>
           <dt>В день ужина</dt><dd>250 €</dd>
         </dl>
       </div>
       <div>
-        <p>Место считается забронированным после оплаты 100 €. Ссылка на оплату открывается сразу после заявки. Остальные 250 € — в день ужина.</p>
+        <p>Место считается забронированным после оплаты невозвратной брони 100 € за человека. Остальные 250 € — в день ужина. Ужин проходит на русском языке.</p>
         <p>Часть выручки мы отправляем в поддержку женщин, заключённых по политическим делам.</p>
       </div>
     </div>
@@ -477,9 +481,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
     <p>Часть выручки каждого вечера идёт на поддержку женщин, заключённых по политическим делам.</p>
     <p class="eyebrow" style="margin:38px 0 0">Авторки ужина «Возвращение»</p>
     <ul class="team">
-      <li><b>Вика Привалова</b><span>создательница и режиссёрка проекта Stories.Savored</span></li>
-      <li><b>Кристина Черняховская</b><span>шеф-повар и гастрономический куратор вечера</span></li>
-      <li><b>Аня Салова</b><span>продюсер</span></li>
+      <li><b><a href="https://www.instagram.com/vikasupergood/" target="_blank" rel="noopener">Вика Привалова</a></b><span>создательница и режиссёрка проекта Stories.Savored</span></li>
+      <li><b><a href="https://www.instagram.com/dailyrecipes_kris/" target="_blank" rel="noopener">Кристина Черняховская</a></b><span>шеф-повар и гастрономический куратор вечера</span></li>
+      <li><b><a href="https://www.instagram.com/fsalova/" target="_blank" rel="noopener">Аня Салова</a></b><span>продюсер</span></li>
     </ul>
   </section>
 
@@ -528,7 +532,7 @@ const CONFIG = {
      Если когда-нибудь понадобятся разные ссылки — впишите их
      в строки с датами, они имеют приоритет над all. */
   stripe: {
-    all: "",
+    all: "https://book.stripe.com/28E7sKa5lcHt5BDcitaZi00",
     "2 октября 2026, пятница": "",
     "3 октября 2026, суббота": ""
   },
