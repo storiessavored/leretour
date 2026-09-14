@@ -9,7 +9,7 @@
 <title>Возвращение · Le retour</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@1,300;1,400&family=Manrope:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Manrope:wght@200;300;400;500;600&display=swap">
 <style>
 :root{
   --linen:#F2EDE5;
@@ -127,7 +127,12 @@ h3{font-family:var(--sans);font-weight:400;font-size:19px;margin:0 0 6px}
 }
 .facts li{margin:0}
 .hero-cta{margin-top:clamp(28px,3.6vw,42px);display:flex;justify-content:center}
-.booking-top{padding-block:clamp(30px,4vw,44px) clamp(30px,4vw,44px);border-top:none}
+.booking-top{
+  border-top:none;
+  background:var(--paper);
+  width:100vw;margin-inline:calc(50% - 50vw);
+  padding:clamp(40px,5vw,60px) 24px clamp(40px,5vw,60px);
+}
 .booking-top + section{border-top:none}
 .btn{
   display:inline-block;font-family:inherit;font-size:13.5px;font-weight:500;
@@ -188,11 +193,11 @@ figcaption{
 }
 
 /* ---------- о вечере ---------- */
-.poem-sec{border-top:none;padding-block:clamp(44px,6.5vw,86px) clamp(10px,1.5vw,20px)}
+.poem-sec{border-top:none;padding-block:clamp(44px,6.5vw,86px) clamp(30px,4vw,52px)}
 .poem{
   margin:0;text-align:center;
-  font-family:"Cormorant Infant",Georgia,serif;font-style:italic;font-weight:300;
-  font-size:clamp(26px,4.6vw,48px);line-height:1.5;color:var(--ink);
+  font-family:Oranienbaum,Georgia,serif;font-weight:400;
+  font-size:clamp(21px,3.3vw,35px);line-height:1.55;color:var(--ink-soft);
 }
 
 /* ---------- меню ---------- */
