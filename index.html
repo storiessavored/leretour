@@ -137,13 +137,19 @@ figure{margin:0}
 .f-mark{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
 .f-mail{font-size:14.5px}
 .f-mail a{border-bottom-color:var(--rule)}
-/* исходник вертикальный и небольшой — не растягиваем его шире родного размера */
-.venue-one{
-  position:relative;overflow:hidden;
-  max-width:720px;margin-inline:auto;aspect-ratio:3/2;
+/* слева вид на воду, справа терраса; высоту ряда задаёт широкий кадр */
+.venue-pair{display:grid;grid-template-columns:1fr 1.55fr;gap:12px;align-items:stretch}
+.venue-pair figure{margin:0;min-width:0;min-height:0;overflow:hidden}
+.venue-pair .v-terrace{aspect-ratio:1024/683}
+.venue-pair .v-terrace img{width:100%;height:100%;object-fit:cover}
+.venue-pair .v-sea{position:relative}
+.venue-pair .v-sea img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 46%}
+@media (max-width:640px){
+  .venue-pair{grid-template-columns:1fr}
+  .venue-pair .v-sea{aspect-ratio:3/4}
+  .venue-pair .v-terrace{aspect-ratio:auto}
 }
-.venue-one img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:50% 50%}
 figure img{width:100%;height:auto}
 figcaption{
   font-size:12px;letter-spacing:.08em;text-transform:uppercase;
@@ -392,9 +398,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
     <p class="eyebrow">Локация</p>
     <h2>Дом на воде<br>в 7-м округе Марселя</h2>
     <p>7-й округ Марселя, в нескольких шагах от бухты Фос-Моннэ. Дом на самой воде, с террасой и садом. Точные детали входа и парковки пришлём вместе с подтверждением брони.</p>
-    <figure class="venue venue-one">
-      <img src="venue2.jpg" alt="Терраса дома под глицинией: деревянный настил, стол и стулья" loading="lazy">
-    </figure>
+    <div class="venue venue-pair">
+      <figure class="v-sea">
+        <img src="venue-sea.jpg" alt="Вид от дома на бухту Фос-Моннэ" loading="lazy">
+      </figure>
+      <figure class="v-terrace">
+        <img src="venue2.jpg" alt="Терраса дома под глицинией: деревянный настил, стол и стулья" loading="lazy">
+      </figure>
+    </div>
   </section>
 
   <section id="booking">
@@ -411,7 +422,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
       <div>
         <p>В стоимость входят пять подач, вино и участие в перформативной программе. Длительность ужина — 1,5 часа, проходит на русском языке.</p>
         <p>Место считается забронированным после оплаты невозвратной брони 100 € за человека. Остальные 250 € — в день ужина.</p>
-        <p>Часть выручки мы отправляем в поддержку женщин, заключённых по политическим делам.</p>
+        <p>Часть выручки каждого вечера отправляется на поддержку работы проекта <a href="https://www.instagram.com/zhenski_srok/" target="_blank" rel="noopener">«Женский Срок»</a> и политзаключённым женщинам.</p>
       </div>
     </div>
 
@@ -482,7 +493,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--wine);bo
     <p class="eyebrow">О нас</p>
     <h2>Stories.Savored</h2>
     <p class="serif" style="font-size:18px;line-height:1.6">Серия перформативных благотворительных ужинов. Каждое событие — своя тема, свой сценарий и своё меню: несколько подач, голос с личными историями и мягкое взаимодействие с гостями.</p>
-    <p>Часть выручки каждого вечера отправляется на поддержку работы проекта <a href="https://www.instagram.com/zhenski_srok/" target="_blank" rel="noopener">«Женский Срок»</a> и политзаключённым женщинам.</p>
+    <p>Часть выручки каждого вечера идёт на поддержку женщин, заключённых по политическим делам.</p>
     <p class="eyebrow" style="margin:38px 0 0">Авторки ужина «Возвращение»</p>
     <ul class="team">
       <li><b><a href="https://www.instagram.com/vikasupergood/" target="_blank" rel="noopener">Вика Привалова</a></b><span>создательница и режиссёрка проекта Stories.Savored</span></li>
